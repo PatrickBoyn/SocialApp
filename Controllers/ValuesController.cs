@@ -22,20 +22,30 @@ namespace SocialAppAPI.Controllers
         }
         // GET api/values
         [HttpGet]
-        public async Task<IActionResult> GetValuesAsync()
+        public IActionResult GetValuesAsync()
         {
-            List<Value> values = await _context.Values.ToListAsync();
+            List<Value> values = _context.Values.ToList();
+            
+            if(values != null)
+            {
+                return Ok(values);
+            }
 
-            return Ok(values);
+            return NoContent();
         }
         
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetValueAsync(int id)
+        public IActionResult GetValueAsync(int id)
         {
-            Value value = await _context.Values.FirstOrDefaultAsync(i => i.Id == id);
+            Value value =  _context.Values.FirstOrDefault(i => i.Id == id);
 
-            return Ok(value);
+            if(value != null)
+            {
+                return Ok(value);
+            }
+
+            return NoContent();
         }
 
         // POST api/values
