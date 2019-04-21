@@ -25,13 +25,8 @@ namespace SocialAppAPI.Controllers
         public IActionResult GetValuesAsync()
         {
             List<Value> values = _context.Values.ToList();
-            
-            if(values != null)
-            {
-                return Ok(values);
-            }
 
-            return NoContent();
+            return Ok(values);
         }
         
         // GET api/values/5
@@ -40,12 +35,7 @@ namespace SocialAppAPI.Controllers
         {
             Value value =  _context.Values.FirstOrDefault(i => i.Id == id);
 
-            if(value != null)
-            {
-                return Ok(value);
-            }
-
-            return NoContent();
+            return Ok(value);
         }
 
         // POST api/values
